@@ -1,11 +1,14 @@
 package com.example.parse_ok;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class NetworkClient {
 
-    public static final String BASE_URL = "http://ws.audioscrobbler.com";
+    public static final String BASE_URL = "https://ws.audioscrobbler.com";
 
     public static Retrofit retrofit;
 
@@ -14,7 +17,8 @@ public class NetworkClient {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(ScalarsConverterFactory.create())
+					.addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
         return retrofit;

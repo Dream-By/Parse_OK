@@ -12,10 +12,11 @@ public class Artist {
     @Expose
     private String name;
 
+	/*
     @SerializedName("image")
     @Expose
     private List<Image> image = null;
-
+	*/
 
 
     public String getName() {
@@ -25,7 +26,8 @@ public class Artist {
     public void setName(String name) {
         this.name = name;
     }
-
+	
+	/*
     public List<Image> getImage() {
         return image;
     }
@@ -34,5 +36,6 @@ public class Artist {
         this.image = image;
     }
 
+	*/
 
 }

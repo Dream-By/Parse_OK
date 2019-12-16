@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -24,42 +25,31 @@ public class MainActivity extends AppCompatActivity {
 
         textView = findViewById(R.id.textView);
     }
+	
+	public String getGreeting() {
+        return "Hello world.";
+    }
 
     private void getArtist(){
 
-
-
         Retrofit retrofit = NetworkClient.getRetrofitClient();
         MusicInterface musicInterface = retrofit.create(MusicInterface.class);
-        Call call = musicInterface.getArtist("artist.getinfo","Cher","6c8dc87e402c8f96b8369f927ca0c1be", "json");
-        call.enqueue(new Callback () {
-            @Override
-            public void onResponse(Call call, Response response) {
+		
+		Call callArtist = musicInterface.getArtist("artist.getinfo","Cher","6c8dc87e402c8f96b8369f927ca0c1be", "json");
+		
+                    try {
+                        Response<ArtistInfo> responseArtistInfo = callArtist.execute();
+                        ArtistInfo artistInfo = responseArtistInfo.body();
+                        final Artist artist = artistInfo.getArtist();
+                        StringBuilder sb = new StringBuilder();
+                        sb.append(artist.getName());
 
-                if (response.body() !=null) {
-                    Artist artist = (Artist) response.body();
-
-
-                    StringBuilder sb = new StringBuilder();
-                    sb.append(artist.getName());
-                    sb.append(" - ");
-                    //sb.append(artist.getImage().get(0));
-
-                    textView.setText("Artist is - " + sb);
-
-
-                    //textView.setText("Все отлично!");
-
+                        textView.setText("Artist is - " + sb);
+                    } catch (IOException e){
+                        System.out.println("caught IOException: " + e);
+                    }
 
                 }
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-
-            }
-        });
-    }
 
 
     public void StartBtn(View view) {
