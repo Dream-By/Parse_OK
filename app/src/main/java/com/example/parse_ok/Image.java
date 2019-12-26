@@ -23,4 +23,10 @@ public class Image {
         this.size = size;
     }
 
+    @Override
+    public String toString()
+    {
+        return "ClassPojo [#text = "+text+", size = "+size+"]";
+    }
+
 }

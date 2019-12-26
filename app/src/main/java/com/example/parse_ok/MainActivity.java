@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -55,15 +56,15 @@ public class MainActivity extends AppCompatActivity {
         //sb.append(track.getName());
 
         final Album album = track.getAlbum();
-        final List<Image> image = album.getImage();
+        final Image[] image = album.getImage();
 
-        sb.append(album.getArtist());
+            sb.append(album.getArtist());
         sb.append(" - ");
         sb.append(album.getTitle());
         sb.append(", адрес картинки - ");
-        sb.append(image.get(3).getText()); //строка возвращает значение "NULL" ????
+        sb.append(image[3].getText());//строка возвращает значение "NULL" ????
 
-            //sb.append(album.getImage().get(3).getText().toString());
+            //
         //sb.append(image.get(3).getText().toString());
 
 

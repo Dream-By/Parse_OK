@@ -21,4 +21,10 @@ public class Track {
         this.album = album;
     }
 
+    @Override
+    public String toString()
+    {
+        return "ClassPojo [album = "+album+", name = "+name+"]";
+    }
+
 }
