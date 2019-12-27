@@ -1,11 +1,24 @@
 
 package com.example.parse_ok;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
 public class Album {
 
-    private String artist, title;
+    @SerializedName("artist")
+    @Expose
+    private String artist;
 
-    private Image[] image = null;
+    @SerializedName("title")
+    @Expose
+    private String title;
+
+    @SerializedName("image")
+    @Expose
+    private List<Image> image = null;
 
     public String getArtist() {
         return artist;
@@ -23,11 +36,11 @@ public class Album {
         this.title = title;
     }
 
-    public Image[] getImage() {
+    public List<Image> getImage() {
         return image;
     }
 
-    public void setImage(Image[] image) {
+    public void setImage(List <Image> image) {
         this.image = image;
     }
 
